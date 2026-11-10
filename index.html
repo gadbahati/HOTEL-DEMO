@@ -30,6 +30,40 @@
 .quick-actions{position:fixed;right:22px;bottom:22px;z-index:20;display:flex;flex-direction:column;gap:9px}
 .quick-actions a,.quick-actions button{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:0;box-shadow:0 7px 22px #0003;color:white;font-weight:700;font-size:17px;cursor:pointer}
 .quick-wa{background:#218c58}.quick-call{background:#bd9560}.quick-social{background:#172b27}
+/* Refined finishing touches */
+:root{--gold:#b58b55;--ink:#142722;--muted:#68756f}
+body{letter-spacing:.08px}
+.nav{border-bottom:1px solid #eeeae1}
+.brand{letter-spacing:3.4px}
+.navlinks a{font-weight:600;transition:color .2s}
+.nav-cta,.btn{font-weight:700;border-radius:2px;box-shadow:0 5px 16px #172b2714}
+.section-head{margin-bottom:54px}
+.section-head h2,.intro-copy h2,.contact h2{letter-spacing:-.7px}
+.room-card{border-color:#e9e5dc}
+.room-info{padding:25px}
+.booking-form{box-shadow:0 14px 42px #172b2710;border:1px solid #e9e4d9}
+.footer{padding-top:64px}
+.chat-launcher{position:fixed;left:22px;bottom:22px;z-index:30;display:flex;align-items:center;gap:11px;padding:12px 17px 12px 13px;border:1px solid #e9e4d9;border-radius:40px;background:#fffefa;color:var(--ink);box-shadow:0 10px 34px #10221d24;cursor:pointer;font:600 11px var(--sans);letter-spacing:.3px;transition:transform .2s,box-shadow .2s}
+.chat-launcher:hover{transform:translateY(-3px);box-shadow:0 14px 38px #10221d30}
+.chat-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#e8c99e;font:17px var(--serif)}
+.chat-status{position:absolute;width:10px;height:10px;border-radius:50%;background:#42a66b;border:2px solid white;left:39px;top:10px;animation:chatPulse 1.8s infinite}
+@keyframes chatPulse{0%,100%{box-shadow:0 0 0 0 #42a66b66}50%{box-shadow:0 0 0 6px #42a66b00}}
+.chat-window{position:fixed;left:22px;bottom:88px;width:min(360px,calc(100vw - 30px));z-index:31;background:#fffefa;border:1px solid #e8e3d9;border-radius:12px;box-shadow:0 22px 70px #10221d30;overflow:hidden;display:none}
+.chat-window.open{display:block;animation:chatIn .2s ease-out}
+@keyframes chatIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.chat-head{background:var(--ink);color:white;padding:19px 20px;display:flex;align-items:center;justify-content:space-between}
+.chat-head strong{display:block;font:500 19px var(--serif)}
+.chat-head small{display:block;color:#c4cec7;font-size:10px;margin-top:3px}
+.chat-close{border:0;background:#ffffff18;color:white;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:17px}
+.chat-body{padding:20px}
+.chat-message{background:#f3f1eb;border-radius:3px 12px 12px 12px;padding:13px 14px;color:#34433c;font-size:12px;line-height:1.7}
+.chat-label{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:#8b785f;margin:18px 0 9px}
+.chat-options{display:grid;gap:8px}
+.chat-option{border:1px solid #e5e0d6;background:white;color:var(--ink);padding:10px 12px;text-align:left;font-size:11px;cursor:pointer;transition:.2s}
+.chat-option:hover{border-color:var(--gold);background:#faf8f2}
+.chat-foot{border-top:1px solid #eee9df;padding:13px 20px;display:flex;justify-content:space-between;align-items:center;color:#8a938d;font-size:9px}
+.chat-foot button{border:0;background:var(--gold);color:white;padding:9px 12px;font-size:9px;letter-spacing:.8px;text-transform:uppercase;cursor:pointer}
+@media(max-width:620px){.chat-launcher{left:12px;bottom:12px;padding:10px 13px 10px 10px}.chat-window{left:12px;bottom:76px;width:calc(100vw - 24px)}.quick-actions{right:12px;bottom:12px}.section-head{margin-bottom:38px}.footer{padding-top:48px}}
 @media(max-width:850px){.footer-main{grid-template-columns:1fr 1fr;gap:30px}}
 @media(max-width:620px){.footer-main{grid-template-columns:1fr 1fr;gap:25px 18px}.footer-brand-copy{grid-column:span 2}.quick-actions{right:13px;bottom:13px}.quick-actions a,.quick-actions button{width:44px;height:44px}.footer-col h4{font-size:18px}}
 @media(max-width:850px){.nav{padding:0 5%;height:72px}.navlinks{gap:17px}.bookingbar{grid-template-columns:repeat(2,1fr)}.bookingbar .btn{grid-column:span 2}.section{padding:80px 6%}.intro{gap:5%}.room-grid{grid-template-columns:repeat(2,1fr)}.experience-grid{grid-template-columns:repeat(3,1fr)}.experience{height:260px}.contact{gap:5%}}
@@ -89,6 +123,12 @@
 </div>
 <div class="copyright"><span>© 2026 THE HIGHLANDS · DEMO CONCEPT</span><span class="demo-label">Made for better stays.</span></div>
 </footer>
+<button class="chat-launcher" id="chatLauncher" type="button" aria-expanded="false" aria-controls="hotelChat"><span class="chat-avatar">H</span><span class="chat-status"></span><span>Need help planning your stay?</span></button>
+<section class="chat-window" id="hotelChat" aria-label="Hotel enquiry assistant">
+  <div class="chat-head"><div><strong>Guest Concierge</strong><small><span style="color:#86d5a1">●</span> Here to help with your enquiry</small></div><button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button></div>
+  <div class="chat-body"><div class="chat-message">Welcome to The Highlands. How can we help make your stay special?</div><div class="chat-label">Choose a topic to get started</div><div class="chat-options"><button class="chat-option" data-chat="availability">I'd like to check room availability</button><button class="chat-option" data-chat="rooms">Tell me about the rooms and rates</button><button class="chat-option" data-chat="location">I need directions or hotel information</button><button class="chat-option" data-chat="special">I have a special request</button></div></div>
+  <div class="chat-foot"><span>Demo concierge · Replies via WhatsApp</span><button id="chatWhatsApp" type="button">Chat with us ↗</button></div>
+</section>
 <div class="quick-actions" aria-label="Quick contact actions"><button class="quick-social" type="button" data-social="facebook" aria-label="Facebook">f</button><button class="quick-social" type="button" data-social="x" aria-label="X">𝕏</button><button class="quick-wa" type="button" id="quickWhatsapp" aria-label="WhatsApp">◉</button><button class="quick-call" type="button" id="quickCall" aria-label="Call hotel">☎</button></div>
 <script>
 const $=s=>document.querySelector(s);
@@ -104,6 +144,14 @@ function openSocial(key,label){let url=localStorage.getItem('hotelDemo'+key)||pr
 document.querySelectorAll('[data-social]').forEach(b=>b.addEventListener('click',()=>openSocial(b.dataset.social==='facebook'?'Facebook':'X',b.dataset.social==='facebook'?'Facebook':'X')));
 ['footerWhatsapp','quickWhatsapp'].forEach(id=>$('#'+id).addEventListener('click',()=>sendWhatsApp('Hello The Highlands, I would like to make an enquiry about a stay.')));
 ['footerCall','quickCall'].forEach(id=>$('#'+id).addEventListener('click',callHotel));
+const chat=$('#hotelChat'),chatLauncher=$('#chatLauncher');
+function toggleChat(open){chat.classList.toggle('open',open);chatLauncher.setAttribute('aria-expanded',String(open))}
+chatLauncher.addEventListener('click',()=>toggleChat(!chat.classList.contains('open')));
+$('#chatClose').addEventListener('click',()=>toggleChat(false));
+const chatMessages={availability:'Hello, I would like to check room availability. Please share available dates and rates.',rooms:'Hello, please share details of your rooms, facilities and current rates.',location:'Hello, please share your exact location, directions and hotel information.',special:'Hello, I have a special request for my stay. Could someone from the team assist me?'};
+document.querySelectorAll('[data-chat]').forEach(b=>b.addEventListener('click',()=>sendWhatsApp(chatMessages[b.dataset.chat])));
+$('#chatWhatsApp').addEventListener('click',()=>sendWhatsApp('Hello The Highlands, I have a question about planning my stay.'));
+
 
 </script>
 </body>
